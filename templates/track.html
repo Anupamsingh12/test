@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+  {% include 'index.html'%}
+<head>
+  <style>
+  
+    .centerDiv
+    {
+     
+      margin: 5% 40%;
+     
+    }
+  </style>
+</head>
+<body>
+  <div class="centerDiv">
+    <form class="form-inline md-form mr-auto mb-4" method="POST" action="track">
+      {% csrf_token %}
+     
+      <input type="text" class="form-control" id="email" name="email" placeholder="email">
+      
+      {% if not user.is_authenticated %}
+      <br>
+      <input class="form-control mr-sm-2" type="text",name='phone' placeholder="enter phone" aria-label="Search">
+      {% else %}
+      {% endif%}
+      <button type="submit" class="btn btn-warning" >track</button>
+    </form>
+
+  </div>
+  {% if messages %}
+  <ul class="alert">
+      {% for message in messages %}
+      <h3 style="text-align:center;color:red;">{{ message }}</h3>
+      {% endfor %}
+  </ul>
+  {% endif %}
+  <div class="panel-group">
+    {% for rs in cons %}
+  <div class="panel panel-success">
+    <div class="panel-heading" ><a href="#">{{rs.name}}   |  {{rs.email}}  |  {{rs.pincode}}</a></button></div>
+    
+  </div>
+  {% endfor%}
+
+
+  
+</body>
+</html>

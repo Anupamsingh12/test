@@ -1,0 +1,72 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+    {% include 'index.html' %}  
+ 
+<div class="container">
+  <h2 style="text-align:center";> Your raisings </h2>
+  <h1>check your status here</h1>
+
+
+
+  
+ 
+
+  <div class="panel-group">
+      {% for rs in raised %}
+    <div class="panel panel-success">
+      <div class="panel-heading" ><a href="status2">{{rs.subject}}   |  {{rs.email}}</a></button></div>
+      
+    </div>
+    <img src="{{d.image.url}}" id='my-img' alt="pic not available">
+    {% endfor %}
+    <div class="panel panel-success">
+      <div class="panel-heading">Panel Header</div>
+     
+    </div>
+    <div class="panel panel-danger">
+      <div class="panel-heading">Panel Header</div>
+
+    </div>
+    <div class="panel panel-warning">
+      <div class="panel-heading">Panel Header</div>
+    
+    
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+
+
+
+
+
