@@ -1,146 +1,53 @@
+
 {% load static %}
 <!DOCTYPE html>
-<html class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <title>Flicker express</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Fonts -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Dosis:400,700' rel='stylesheet' type='text/css'>
-        
+<html lang="en">
+<head>
+  <title>Flicker express</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-        <!-- Bootsrap -->
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
-
-        <!-- Font awesome -->
-        <link rel="stylesheet" href="{%static 'css/font-awesome.min.css'%}">
-
-        <!-- Owl carousel -->
-        <link rel="stylesheet" href="{%static 'css/owl.carousel.css'%}">
-
-        <!-- Template main Css -->
-        <link rel="stylesheet" href="{%static 'css/style.css'%}">
-        
-        <!-- Modernizr -->
-        <script src="{% static 'js/modernizr-2.6.2.min.js'%}"></script>
-
-        <style>
-          .footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height:3%;
-            background-color:rgb(53, 72, 243);
-            color: white;
-            text-align: center;
-          }
-          </style>
-    </head>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Welcome {{user.first_name}}</a>
+    </div>
    
-   
-    
+    <div class="collapse navbar-collapse" id="myNavbar">
+     
+      <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
 
-    <body>
-
-
-    <header class="main-header">
-        
-    
-        <nav class="navbar navbar-static-top">
-
-            <div class="navbar-top">
-
-              <div class="container">
-                  <div class="row">
-
-                    <div class="col-sm-6 col-xs-12">
-
-                        <ul class="list-unstyled list-inline header-contact">
-                            <li> <i class="fa fa-phone"></i> <a href="tel:">9900887766</a> </a> </li>
-                             <li> <i class="fa fa-envelope"></i> <a href="#">flickerexpress.com</a> </li>
-                       </ul> <!-- /.header-contact  -->
-                      
-                    </div>
-
-                    <div class="col-sm-6 col-xs-12 text-right">
-
-                        <ul class="list-unstyled list-inline header-social">
-
-                            <li> <a href="#"> <i class="fa fa-facebook"></i> </a> </li>
-                            <li> <a href="#"> <i class="fa fa-twitter"></i>  </a> </li>
-                            <li> <a href="#"> <i class="fa fa-google"></i>  </a> </li>
-                            <li> <a href="#"> <i class="fa fa-youtube"></i>  </a> </li>
-                            <li> <a href="#"> <i class="fa fa fa-pinterest-p"></i>  </a> </li>
-                       </ul> <!-- /.header-social  -->
-                      
-                    </div>
-
-
-                  </div>
-              </div>
-
-            </div>
-
-            <div class="navbar-main">
-              
-              <div class="container">
-
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-
-                  </button>
-                  
-                  <a class="navbar-brand" href="index.html"><img src="{%static 'images/sadaka-logodf.png'%}" alt=""></a>
                  
-                 
-                </div>
-
-                <div id="navbar" class="navbar-collapse collapse pull-right">
-
-                  <ul class="nav navbar-nav">
-                 {% if user.is_authenticated %}
-
-                 <li><a style="text-align:Right;">Welcome {{user.first_name}}</a></li>
                     <li><a class="is-active" href="index">Home</a></li>
                     
                     </li>
                     <li><a href="send">send</a></li>
                     <li><a href="track">track order</a></li>
                    
-                      <li><a href="logout">Logout</a></li>
+                    <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     
                     {% else %}
-                     <li><a href="index">home</a></li>
-                    <li><a href="login">Login/signup</a></li>
+                    <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     {% endif %}
                   </ul>
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+  
 
-                </div> <!-- /#navbar -->
-
-              </div> <!-- /.container -->
-              
-            </div> <!-- /.navbar-main -->
-
-
-        </nav> 
-
-    </header> <!-- /. main-header -->
-
-
-
-
-
-           </body>
-           <div class="footer">
-            <p>copyright @ flashexpress:</p>
-          </div>
-          
+</body>
 </html>
