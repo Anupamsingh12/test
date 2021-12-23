@@ -5,9 +5,18 @@ from django.contrib import messages
 from .models import consignment
 
 def index(request):
-    
-    
-    return render(request,"home.html")
+    if not request.user.is_authenticated:
+        return redirect('login')
+    curr_user =request.user
+    return render(request,"home.html",{'user':curr_user})
+
+def adminApp(request):
+    if not request.user.is_authenticated:
+       
+        return redirect('login')
+    curr_user =request.user
+    print(curr_user.first_name)
+    return render(request,"home.html",{'user':curr_user})
 
 def status2(request):
     return render(request,'status2.html')

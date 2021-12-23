@@ -25,7 +25,7 @@ SECRET_KEY = '$6qoobggt-3c9mbwt&$32bav1vjggy&97ej)=fo790jbcy6gtk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.43.117','127.0.0.1','flickerexpress.herokuapp.com']
+ALLOWED_HOSTS = ['192.168.43.117','127.0.0.1','flickerexpress.herokuapp.com','localhost']
 
 
 # Application definition
@@ -69,7 +69,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'web.wsgi.application'
+#uncomment for production =======================================
+# WSGI_APPLICATION = 'web.wsgi.application'
 
 
 # Database
