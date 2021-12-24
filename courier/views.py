@@ -10,6 +10,12 @@ def index(request):
     curr_user =request.user
     return render(request,"home.html",{'user':curr_user})
 
+def profile(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    curr_user =request.user
+    return render(request,"profile.html",{'user':curr_user})
+
 def adminApp(request):
     if not request.user.is_authenticated:
        
