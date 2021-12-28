@@ -135,6 +135,9 @@ def logout(request):
 def suggesions(request):
     return render(request,'home.html')
 
+def updateProfile(request):
+    return render(request,'updateProfile.html')
+
 
 
 
