@@ -125,9 +125,8 @@ def send(request):
 
 def status(request):
     current_user = request.user 
-    return render(request,'status.html')
-    #ed=raised_issue.objects.filter(email=current_user.email)
-
+    return render(request,'payment.html')
+    
 
 def logout(request):
     auth.logout(request)
