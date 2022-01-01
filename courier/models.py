@@ -15,3 +15,38 @@ class consignment(models.Model):
     
     def __str__(self):
         return self.name
+
+GENDER_CHOICES = (
+    ("male", "male"),
+    ("female", "female"),
+    ("other", "other"),
+    
+)
+ROLE_TYPES = (
+    ("ADMIN", "admin"),
+    ("TEACHER", "teacher"),
+    ("STUDENT", "student"),
+    ("ACCOUNTANT", "accountant"),
+    
+)
+class Profile(models.Model):
+  
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    gender = models.CharField(
+        max_length = 20,
+        choices = GENDER_CHOICES,
+        default = 'male'
+        )
+    role = models.CharField(
+        max_length = 20,
+        choices = ROLE_TYPES,
+        default = 'student'
+        )
+    currentAddress = models.CharField(max_length=200, blank=True)
+    permanentAddress = models.CharField(max_length=200, blank=True)
+    birthDate = models.DateField(null=True, blank=True)
+    contactNumber=models.CharField(max_length=15,blank=True)
+    parentsContactNumber=models.CharField(max_length=15,blank=True)
+    userImage=models.ImageField(upload_to="profile_pic")
+    def __str__(self):
+        return "{}'s profile".format(self.user)
