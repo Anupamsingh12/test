@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     
@@ -15,5 +18,8 @@ urlpatterns = [
     path('logout',views.logout,name="logout"),
     path('suggesions',views.suggesions,name="suggesions"),
     path('profile',views.profile,name="profile"),
-    path('profile/update',views.updateProfile,name="updateProfile"),
+    path('updateProfile',views.updateProfile,name="updateProfile"),
 ]
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)

@@ -2,7 +2,7 @@ from django.shortcuts import render,HttpResponse,redirect
 import os
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from .models import consignment
+from .models import consignment,Profile
 
 def index(request):
     if not request.user.is_authenticated:
@@ -13,8 +13,11 @@ def index(request):
 def profile(request):
     if not request.user.is_authenticated:
         return redirect('login')
-    curr_user =request.user
-    return render(request,"profile.html",{'user':curr_user})
+    profile1 = Profile.objects.filter(user=request.user)
+    profile=''
+    for p in profile1:
+        profile=p
+    return render(request,"profile.html",{'profile':profile})
 
 def adminApp(request):
     if not request.user.is_authenticated:
@@ -66,7 +69,7 @@ def login(request):
             return render(request,'home.html')
         else:
             messages.info(request,'username or password is not correct')
-        return render(request,'login.html')
+        return render(request,'profile.html')
 
         
 
@@ -82,6 +85,14 @@ def signup(request):
         password1=request.POST['Password1']
         password2=request.POST['Password2']
         
+        gender=request.POST['gender']
+        
+        role=request.POST['role']
+        user1=User.objects.filter(email=email)
+        if user1 is None:
+             messages.info(request,'user already exists')
+             return render(request,'signup.html',{'message':messages})
+
         nm=email.split('@')
         username=nm[0]
         if password1 !=password2:
@@ -91,6 +102,12 @@ def signup(request):
             password=password1
             user=User.objects.create_user(username=username,password=password,email=email,first_name=firstName,last_name=lastName)
             user.save()
+            profile =Profile(user=user)
+            profile.save()
+            profile = Profile.objects.get(user=user)
+            profile.role = role
+            profile.gender=gender
+            profile.save()
             print("user_created")
             return render(request,'login.html')
         
@@ -130,13 +147,53 @@ def status(request):
 
 def logout(request):
     auth.logout(request)
-    return render(request,"home.html")
+    return render(request,"login.html")
 
 def suggesions(request):
     return render(request,'home.html')
 
 def updateProfile(request):
-    return render(request,'updateProfile.html')
+    print("entering updateProfile method")
+    user = request.user
+    profile = Profile.objects.get(user=user)
+
+    if request.method=="POST": 
+        if 'img' in request.FILES:
+            img=request.FILES['img']
+            if not img=='':
+                print("yaha aaya")
+                profile.userImage=img
+                print("image set")
+            
+        firstName = request.POST['firstName']
+        print(firstName)
+        if not firstName=='':
+            user.first_name=firstName
+        lastName = request.POST['lastName']
+        if not lastName=='':
+            user.last_name=lastName
+        contactNumber = request.POST['contactNumber']
+        if not contactNumber=='':
+            profile.contactNumber=contactNumber
+        fatherName = request.POST['fatherName']
+        if not fatherName=='':
+            profile.fatherName=fatherName
+        currentAddress = request.POST['currentAddress']
+        if not contactNumber=='':
+            profile.contactNumber=contactNumber
+        permanentAddress = request.POST['permanentAddress']
+        if not permanentAddress=='':
+            profile.permanentAddress=permanentAddress
+        email = request.POST['email']
+        if not email=='':
+            user.email=email
+        birthday = request.POST['birthday']
+        if not birthday=='':
+            profile.birthDate=birthday
+        user.save()
+        profile.save()
+        print("exiting update profile method")
+    return render(request,'updateProfile.html',{'profile':profile})
 
 
 

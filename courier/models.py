@@ -46,6 +46,7 @@ class Profile(models.Model):
     permanentAddress = models.CharField(max_length=200, blank=True)
     birthDate = models.DateField(null=True, blank=True)
     contactNumber=models.CharField(max_length=15,blank=True)
+    fatherName=models.CharField(max_length=100,blank=True)
     parentsContactNumber=models.CharField(max_length=15,blank=True)
     userImage=models.ImageField(upload_to="profile_pic")
     def __str__(self):

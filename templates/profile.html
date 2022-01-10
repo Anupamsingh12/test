@@ -13,19 +13,19 @@
 
 {% include 'index.html' %}
     <body class="bg-blue-500"></body>
-	<div class="container mx-auto my-5 p-5 ">
+	<div class="container mx-auto my-3 p-5 ">
         <div class="md:flex no-wrap md:-mx-2 -mt-12 ">
             <!-- Left Side -->
             <div class="w-full md:w-3/12 md:mx-2">
                 <!-- Profile Card -->
                 <div class="bg-white p-3 border-t-4 border-green-400">
                     <div class="image overflow-hidden">
-                        <img class="h-auto w-full mx-auto"
-                            src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+                        <img class="object-cover h-80 w-80"
+                            src="{{profile.userImage.url}}"
                             alt="">
                     </div>
-                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">Jane Doe</h1>
-                    <h3 class="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
+                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{profile.user.first_name}} {{profile.user.last_name}}</h1>
+                    <h3 class="text-gray-600 font-lg text-semibold leading-6">{{profile.role}} at Vidyambari Academy</h3>
                     <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit ame
 						dfffffffffffdfffffffffffft</p>
                     <ul
@@ -37,7 +37,7 @@
                         </li>
                         <li class="flex items-center py-3">
                             <span>Member since</span>
-                            <span class="ml-auto">Nov 07, 2016</span>
+                            <span class="ml-auto">{{profile.user.date_joined}}</span>
                         </li>
                     </ul>
                 </div>
@@ -66,43 +66,42 @@
                         <div class="grid md:grid-cols-2 text-sm">
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">First Name</div>
-                                <div class="px-4 py-2">Jane</div>
+                                <div class="px-4 py-2">{{profile.user.first_name}}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Last Name</div>
-                                <div class="px-4 py-2">Doe</div>
+                                <div class="px-4 py-2">{{profile.user.first_name}}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Gender</div>
-                                <div class="px-4 py-2">Female</div>
+                                <div class="px-4 py-2">{{profile.Gender}}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Contact No.</div>
-                                <div class="px-4 py-2">+11 998001001</div>
+                                <div class="px-4 py-2">{{profile.contactNumber}}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Current Address</div>
-                                <div class="px-4 py-2">Beech Creek, PA, Pennsylvania</div>
+                                <div class="px-4 py-2">{{profile.permanentAddress}}</div>
                             </div>
                             <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Permanant Address</div>
-                                <div class="px-4 py-2">Arlington Heights, IL, Illinois</div>
+                                <div class="px-4 py-2 font-semibold">Parents contact No.</div>
+                                <div class="px-4 py-2">{{profile.parentsContactNumber}}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Email.</div>
                                 <div class="px-4 py-2">
-                                    <a class="text-blue-800" href="mailto:jane@example.com">jane@example.com</a>
+                                    <a class="text-blue-800" >{{profile.user.email}}</a>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Birthday</div>
-                                <div class="px-4 py-2">Feb 06, 1998</div>
+                                <div class="px-4 py-2">{{profile.birthDate}}</div>
                             </div>
                         </div>
                     </div>
                     <button
-                        class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Show
-                        Full Information</button>
+                        class="block w-full text-blue-800 text-sm font-semibold rounded-lg bg-gray-300 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"><a href="updateProfile">update profile? </a></button>
                 </div>
                 <!-- End of about section -->
 

@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$6qoobggt-3c9mbwt&$32bav1vjggy&97ej)=fo790jbcy6gtk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.43.117','127.0.0.1','flickerexpress.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['192.168.219.79','127.0.0.1','flickerexpress.herokuapp.com','localhost']
 
 
 # Application definition
@@ -127,3 +127,6 @@ STATICFILES_DIRS=[
 ]
 
 STATIC_ROOT=os.path.join(BASE_DIR,'assets/assets')
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media/profile_pics')
+MEDIA_URL = '/media/'
