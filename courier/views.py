@@ -224,7 +224,7 @@ def getUsers(request):
     rangeData=0
     if pageNumber ==4:
         rangeData=range()
-    return render(request,'payment.html',{'profile':users,'totalPages':totalPages,'pageNumber':pageNumber,
+    return render(request,'users.html',{'profile':users,'totalPages':totalPages,'pageNumber':pageNumber,
     'resultSize':size,'startIndex':startIndex,'viewSize':viewSize,'range':range(1,4)})
 
 
