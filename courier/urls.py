@@ -19,6 +19,7 @@ urlpatterns = [
     path('suggesions',views.suggesions,name="suggesions"),
     path('profile',views.profile,name="profile"),
     path('updateProfile',views.updateProfile,name="updateProfile"),
+    path('users',views.getUsers,name="updateProfile"),
 ]
 if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL,

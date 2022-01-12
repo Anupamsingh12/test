@@ -3,6 +3,7 @@ import os
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
 from .models import consignment,Profile
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def index(request):
     if not request.user.is_authenticated:
@@ -194,6 +195,37 @@ def updateProfile(request):
         profile.save()
         print("exiting update profile method")
     return render(request,'updateProfile.html',{'profile':profile})
+
+def getUsers(request):
+    pageNumber = 1
+   # rr= request.GET['id']
+    if request.GET =={}:
+        pageNumber = 1
+    else:
+        pageNumber=request.GET['pageNumber']
+    
+    profile=Profile.objects.all().order_by('id')
+    size = profile.count()
+    paginator = Paginator(profile,10)
+    totalPages =size//10 +1
+    pageNumber = int( pageNumber)
+    if size < (pageNumber-1) *10:
+        return HttpResponse("<h1 style='text-align:center'> bad request 400</h1>")
+    startIndex = (pageNumber-1)*10 +1
+    viewSize =startIndex +10
+    if size%10 < 10:
+        viewSize= size % 10
+    try:
+        users=paginator.page(pageNumber)
+    except PageNotAnInteger:
+        users=paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(1)
+    rangeData=0
+    if pageNumber ==4:
+        rangeData=range()
+    return render(request,'payment.html',{'profile':users,'totalPages':totalPages,'pageNumber':pageNumber,
+    'resultSize':size,'startIndex':startIndex,'viewSize':viewSize,'range':range(1,4)})
 
 
 
